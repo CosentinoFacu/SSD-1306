@@ -1,0 +1,29 @@
+'''
+Programa: Test de pantalla SSD1306
+
+Proposito: Verificar funcionamento
+de sensor MPU6050
+
+Programadores: Facundo Cosentino, Sergio Zelaya
+Fecha: 21/08/2022
+'''
+#Importamos Pin e I2C de machine 
+from machine import Pin, I2C
+#Importamos ssd1306
+import ssd1306
+
+import time
+
+#Configuramos comunicacion I2C 
+i2c = I2C(0,sda=Pin(21), scl=Pin(22),freq=400000)
+
+#Configuramos pantalla ssd1306
+display = ssd1306.SSD1306_I2C(128, 32, i2c)
+
+#Mostramos mensaje
+
+for i in range (128):
+    display.fill(0)                         
+    display.text('Hola Mundo', i, 0, 1)
+    display.show()
+    time.sleep(0.5)
